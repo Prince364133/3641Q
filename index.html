@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - MgO</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="empiricalformmagnesiumoxide" align="center">
+  <br>
+
+  <div id="questions">
+    <h2>Empirical Formula of Magnesium Oxide Lab</h2>
+    <h3> Note: do <u>NOT</u> include units when you enter data </h3><br>
+    <p><b>mass of crucible and lid (g):</b></p>
+    <input id="val0" type="text">
+    <p>-------------</p>
+    <p><b>mass of crucible, lid and Mg ribbon (g):</b></p>
+    <input id="val1" type="text">
+    <p>-------------</p>
+    <p><b>mass of crucible, lid and product (g):</b></p>
+    <input id="val2" type="text">
+    <p>-------------</p>
+    <p></p>
+    <input id="submit" onclick="onSubmit();" type="submit" value="Calculate">
+  </div>
+
+  <p></p>
+  <div id="answers" align="center">
+    <p><b>Mole ratio of Mg to O in product: </b></p>
+    <p id="ans0"></p>
+    <p><b>Theoretical Yield of magnesium oxide (g): </b></p>
+    <p id="ans1"></p>
+    <p><b>Percent Yield of magnesium oxide (%): </b></p>
+    <p id="ans2"></p>
+
+  </div>
+  <br>
+</div>
+
+<script>
+  function onSubmit() {
+    var val0 = getValue("val0");
+    var val1 = getValue("val1");
+    var val2 = getValue("val2");
+    var massMg = val1 - val0;
+    var massofproduct = val2 - val0;
+    var massofOinproduct = massofproduct - massMg;
+    var molesOinproduct = massofOinproduct / 16.00;
+    var molesMginproduct = massMg / 24.31;
+    var ans0 = molesMginproduct / molesOinproduct;
+    var ans1 = molesMginproduct * 40.31;
+    var ans2 = 100 * massofproduct / ans1;
+    setText("ans0", ans0);
+    setText("ans1", ans1);
+    setText("ans2", ans2);
+  }
+
+  function getValue(id) {
+    var value = document.getElementById(id).value
+    if (isNaN(value)) {
+      alert("Warning: \"" + value + "\" is not a number. This will mess things up!");
+      return value;
+    }
+    try {
+      var val = parseFloat(value);
+      return val;
+    } catch (err) {
+      alert("Warning: \"" + value + "\" is not a number. This will mess things up!");
+      return value;
+    }
+  }
+
+  function setText(id, text) {
+    document.getElementById(id).innerHTML = text;
+  }
+</script>
+
+<style>
+  body {
+    background: linear-gradient(to top, rgb(0, 134, 176), white, rgb(0, 134, 176));
+  }
+
+  #empiricalformmagnesiumoxide {
+    position: absolute;
+    width: 51%;
+    /*height: 1000%;*/
+    left: 25%;
+    background-color: rgba(255, 160, 204, 0.5);
+    border-radius: 10px;
+  }
+
+  #questions {
+    width: 98%;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    font-family: Lucida Console;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #answers {
+    width: 98%;
+    height: ;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    font-family: Lucida Console;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+</style>
+<!-- partial -->
+  
+</body>
+</html>
